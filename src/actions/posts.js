@@ -1,7 +1,18 @@
-
-const addPost = (post)=>({
+import uniqid from "uniqid";
+const addPost = ({title="",body="",createdAt=0}={})=>({
     type:"ADD_POST",
-    post
-})
+     post:{
+         id:uniqid(),
+         title,
+         body,
+         createdAt
+     }
+});
 
-export {addPost};
+const editPost = (id,updates)=>({
+    type:"EDIT_POST",
+    id,
+    updates
+});
+
+export {addPost,editPost};

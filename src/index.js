@@ -5,16 +5,22 @@ import DashboardPage from "./components/DashboardPage";
 import Header from "./components/Header";
 import AppRouter from "./routers/AppRouter"
 import configureStore from "./store/configureStore";
+import {Provider} from "react-redux";
 
+const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-    <AppRouter />
+    <Provider store={store}>
+     <Header />
+      <AppRouter />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
 
-const store = configureStore();
+store.subscribe(()=>{
+  console.log(store.getState());
+})
 
 serviceWorker.unregister();

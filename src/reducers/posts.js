@@ -7,6 +7,20 @@ const postsReducer = (state=defaultPostState,action)=>{
                 ...state,
                 action.post
             ]
+        case "EDIT_POST":
+            return state.map((post)=>{
+                if(post.id === action.id){
+                    console.log(post);
+                    return {
+                        ...post,
+                        ...action.updates
+                    }
+                }else{
+                    return post;
+                }
+            })
+        default:
+            return state;
     }
 }
 

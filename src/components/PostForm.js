@@ -1,21 +1,34 @@
 import React, { useState } from "react";
 
-const PostForm =()=>{
-    const [title,setTitle] = useState("");
-    const [body,setBody] = useState("");
+class PostForm extends React.Component {
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+        title: props.post ? props.post.title : "",
+        body: props.expense ? props.expense.body : "",
+        createdAt: props.expense ? props.expense.createdAt : 0
+      };
+    }
+    render(){
     return(
-        <diV>
+        <div>
             <form onSubmit={(e)=>{
                 e.preventDefault();
-                console.log(title + "\n" +body);
+                this.props.onSubmit({
+                    title:this.state.title,
+                    body:this.state.body,
+                    createdAt:this.state.createdAt
+                })
             }}>
-                <input type="text" placeholder="Post Title" value={title} onChange={(e)=>{setTitle(e.target.value)}}/>
-                <input type="text" placeholder="Post Body" value={body} onChange={(e)=>{setBody(e.target.value)}}/>
-                <button type="submit">Save Post</button>
+                <input type="text" placeholder="Post Title" value={this.state.title} onChange={(e)=>{const title=e.target.value; this.setState(() => ({ title }))}}/>
+                <input type="text" placeholder="Post Body" value={this.state.body} onChange={(e)=>{const body=e.target.value; this.setState(() => ({ body }))}}/>
+                <button >Save Post</button>
             </form>
             
-        </diV>
+        </div>
     );
+        }
 }
 
 export default PostForm;

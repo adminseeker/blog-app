@@ -2,7 +2,9 @@ import React from "react";
 import {Link, Route, BrowserRouter,Switch} from "react-router-dom";
 import DashboardPage from "../components/DashboardPage";
 import NotFoundPage from "../components/NotFoundPage"; 
-import PostForm from "../components/PostForm";
+import AddPostPage from "../components/AddPostPage";
+import EditPostPage from "../components/EditPostPage";
+
 
 const AppRouter =()=>(
     <BrowserRouter>
@@ -10,7 +12,8 @@ const AppRouter =()=>(
             <Switch>
                 <Route path="/" component={DashboardPage} exact={true}/>
                 <Route path="/dashboard" component={DashboardPage} />
-                <Route path="/create" component={PostForm} />
+                <Route path="/create" component={AddPostPage} />
+                <Route path="/edit/:id" component={EditPostPage} />
                 <Route component={NotFoundPage} />
             </Switch>
         </div>    
