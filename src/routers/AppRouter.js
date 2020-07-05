@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, Route, BrowserRouter,Switch} from "react-router-dom";
+import {Route, BrowserRouter,Switch} from "react-router-dom";
 import DashboardPage from "../components/DashboardPage";
 import NotFoundPage from "../components/NotFoundPage"; 
 import AddPostPage from "../components/AddPostPage";

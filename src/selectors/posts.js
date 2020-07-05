@@ -9,6 +9,7 @@ const getVisiblePosts = (posts,filters)=>(
         }else if(filters.sortBy === "title"){
             return a.title < b.title ? -1 : 1;
         }
+        return 0;
     })
 )
 
