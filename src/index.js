@@ -5,22 +5,34 @@ import AppRouter from "./routers/AppRouter"
 import configureStore from "./store/configureStore";
 import {Provider} from "react-redux";
 import "./firebase/firebase";
+import {startSetPosts} from "./actions/posts";
+import LoadingPage from "./components/LoadingPage";
 import * as serviceWorker from "./serviceWorker";
 
 const store = configureStore();
 
-ReactDOM.render(
+let hasRendered = false;
+
+const jsx = (
   <React.StrictMode>
     <Provider store={store}>
      <Header />
       <AppRouter />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
-// store.subscribe(()=>{
-//   console.log(store.getState());
-// })
+ReactDOM.render(<LoadingPage />,document.getElementById("root"));
+
+const renderApp = ()=>{
+  if(!hasRendered){
+    ReactDOM.render(jsx,document.getElementById("root"));
+    hasRendered = true
+  }
+}
+
+store.dispatch(startSetPosts()).then(()=>{
+  renderApp();
+})
 
 serviceWorker.unregister();

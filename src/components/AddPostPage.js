@@ -1,13 +1,13 @@
 import React from "react";
 import PostForm from "./PostForm";
-import {addPost} from "../actions/posts";
+import {startAddPost} from "../actions/posts";
 import {connect} from "react-redux";
 
 
 const AddPostPage = (props)=>{
     return(
         <div>
-            <PostForm onSubmit={(post)=>{props.dispatch(addPost(post))
+            <PostForm onSubmit={(post)=>{props.dispatch(startAddPost(post))
                 props.history.push("/")
             }}/>
         </div>

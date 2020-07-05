@@ -1,14 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
 import PostForm from "./PostForm";
-import {editPost,removePost} from "../actions/posts";
+import {startEditPost,startRemovePost} from "../actions/posts";
 
 
 const EditPostPage = (props)=>{
     return(
         <div>
-            <PostForm post={props.post} onSubmit={(updates)=>{props.dispatch(editPost(props.post.id,updates)); props.history.push("/")}}/>
-            <button onClick={(e)=>{props.dispatch(removePost(props.post.id)); props.history.push("/")}}>Remove</button>
+            <PostForm post={props.post} onSubmit={(updates)=>{props.dispatch(startEditPost(props.post.id,updates)); props.history.push("/")}}/>
+            <button onClick={(e)=>{props.dispatch(startRemovePost(props.post.id)); props.history.push("/")}}>Remove</button>
         </div>
     )
 }

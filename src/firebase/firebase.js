@@ -15,8 +15,4 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref("posts/title").update({
-    title:"post 7"
-})
-
 export {firebase, database as default};
