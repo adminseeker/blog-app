@@ -1,34 +1,28 @@
 import React, { useState } from "react";
+import moment from "moment";
 
-class PostForm extends React.Component {
-    constructor(props) {
-      super(props);
-  
-      this.state = {
-        title: props.post ? props.post.title : "",
-        body: props.expense ? props.expense.body : "",
-        createdAt: props.expense ? props.expense.createdAt : 0
-      };
-    }
-    render(){
+const PostForm = (props)=>{
+    const [title,setTitle] = useState(props.post ? props.post.title: "");
+    const [body,setBody] = useState(props.post ? props.post.body: "");
+    const [createdAt,setCreatedAt] = useState(props.expense ? moment(props.createdAt) : moment());
     return(
         <div>
             <form onSubmit={(e)=>{
                 e.preventDefault();
-                this.props.onSubmit({
-                    title:this.state.title,
-                    body:this.state.body,
-                    createdAt:this.state.createdAt
+                props.onSubmit({
+                    title,
+                    body,
+                    createdAt:createdAt.valueOf()
                 })
             }}>
-                <input type="text" placeholder="Post Title" value={this.state.title} onChange={(e)=>{const title=e.target.value; this.setState(() => ({ title }))}}/>
-                <input type="text" placeholder="Post Body" value={this.state.body} onChange={(e)=>{const body=e.target.value; this.setState(() => ({ body }))}}/>
+                <input type="text" placeholder="Post Title" value={title} onChange={(e)=>{const titleVal=e.target.value; setTitle(titleVal)}}/>
+                <input type="text" placeholder="Post Body" value={body} onChange={(e)=>{const bodyVal=e.target.value; setBody(bodyVal)}}/>
                 <button >Save Post</button>
             </form>
             
         </div>
     );
-        }
+        
 }
 
 export default PostForm;

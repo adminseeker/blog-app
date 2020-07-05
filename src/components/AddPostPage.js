@@ -4,12 +4,15 @@ import {addPost} from "../actions/posts";
 import {connect} from "react-redux";
 
 
-const AddPostPage = (props)=>(
-    <div>
-        <PostForm onSubmit={(post)=>{props.dispatch(addPost(post))}}/>
-    </div>
-)
-
+const AddPostPage = (props)=>{
+    return(
+        <div>
+            <PostForm onSubmit={(post)=>{props.dispatch(addPost(post))
+                props.history.push("/")
+            }}/>
+        </div>
+    )
+}
 
 
 export default connect()(AddPostPage);

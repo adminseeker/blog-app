@@ -1,10 +1,22 @@
 import React from "react";
+import {connect} from "react-redux";
+import PostListItem from "./PostListItem";
+import selectPosts from "../selectors/posts";
 
-const PostList = ()=>(
+const PostList = (props)=>(
     <div>
-        <h3>blog 1</h3>
-        <h3>blog 2</h3>
+        {
+            props.posts.map((post)=>{
+                return <PostListItem key={post.id} post={post}/>
+            })
+        }
     </div>
 );
 
-export default PostList;
+const mapStateToProps = (state,props)=>(
+    {
+        posts : selectPosts(state.posts,state.filters)
+    }
+)
+
+export default connect(mapStateToProps)(PostList);

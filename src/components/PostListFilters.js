@@ -1,18 +1,36 @@
 import React, { useState } from "react";
+import {connect} from "react-redux";
+import {setTextFilter,sortByDate,sortByTitle} from "../actions/filters";
 
-
-const PostListFilters = ()=>{
-    const [val,setVal] = useState("");
+const PostListFilters = (props)=>{
     return(
         <div>
-            <input type="text" placeholder="Search Posts"  onChange={(e)=>{setVal(e.target.value)}}/>
-            <select>
-                <option>By Title</option>
-                <option>By Date</option>
+            <input type="text" placeholder="Search Posts" value={props.filters.text}
+                onChange={(e)=>{
+                    const text= e.target.value;
+                    props.dispatch(setTextFilter(text))
+                }}
+            />
+            <select value={props.filters.sortBy}
+                onChange={(e)=>{
+                    const sortBy = e.target.value;
+                    if(sortBy==="date"){
+                        props.dispatch(sortByDate());
+                    }else if(sortBy==="title"){
+                        props.dispatch(sortByTitle());
+                    }
+                }}
+            >
+                <option value="title">By Title</option>
+                <option value="date">By Date</option>
             </select>
-            <h1>{val}</h1>
+
         </div>
     )
 };
 
-export default PostListFilters;
+const mapStateToProps = (state)=>({
+    filters:state.filters
+})
+
+export default connect(mapStateToProps)(PostListFilters);

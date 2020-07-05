@@ -15,4 +15,14 @@ const editPost = (id,updates)=>({
     updates
 });
 
-export {addPost,editPost};
+const removePost = (id)=>({
+    type:"REMOVE_POST",
+    id
+});
+
+const setPosts = (posts)=>({
+    type:"REMOVE_POST",
+    posts
+});
+
+export {addPost,editPost,removePost,setPosts};

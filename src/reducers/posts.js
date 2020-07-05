@@ -19,6 +19,10 @@ const postsReducer = (state=defaultPostState,action)=>{
                     return post;
                 }
             })
+        case "REMOVE_POST":
+            return state.filter((post)=>(post.id!==action.id));
+        case "SET_POSTS":
+            return action.posts;
         default:
             return state;
     }
