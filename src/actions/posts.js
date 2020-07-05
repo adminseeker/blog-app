@@ -47,7 +47,7 @@ const startRemovePost = (id)=>{
 }
 
 const setPosts = (posts)=>({
-    type:"REMOVE_POST",
+    type:"SET_POSTS",
     posts
 });
 

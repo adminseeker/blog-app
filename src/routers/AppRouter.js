@@ -4,6 +4,7 @@ import DashboardPage from "../components/DashboardPage";
 import NotFoundPage from "../components/NotFoundPage"; 
 import AddPostPage from "../components/AddPostPage";
 import EditPostPage from "../components/EditPostPage";
+import LoginPage from "../components/LoginPage";
 
 
 const AppRouter =()=>(
