@@ -16,7 +16,6 @@ let hasRendered = false;
 const jsx = (
   <React.StrictMode>
     <Provider store={store}>
-     <Header />
       <AppRouter />
     </Provider>
   </React.StrictMode>
