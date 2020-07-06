@@ -1,10 +1,15 @@
 import React from "react";
+import {connect} from "react-redux";
+import {startLogin} from "../actions/auth";
 
-const LoginPage =()=>(
+const LoginPage =(props)=>(
     <div>
-        <h1>Blog</h1>
-        <button>Login with Google</button>
+        <button 
+            onClick={()=>{
+                props.dispatch(startLogin())
+            }}
+        >Login with Google</button>
     </div>
 )
 
-export default LoginPage;
+export default connect()(LoginPage);

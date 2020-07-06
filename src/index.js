@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import AppRouter from "./routers/AppRouter"
 import configureStore from "./store/configureStore";
 import {Provider} from "react-redux";
-import "./firebase/firebase";
+import {firebase} from "./firebase/firebase";
 import {startSetPosts} from "./actions/posts";
 import LoadingPage from "./components/LoadingPage";
 import * as serviceWorker from "./serviceWorker";
@@ -30,8 +30,17 @@ const renderApp = ()=>{
   }
 }
 
-store.dispatch(startSetPosts()).then(()=>{
-  renderApp();
+firebase.auth().onAuthStateChanged((user)=>{
+  if(user){
+    store.dispatch(startSetPosts()).then(()=>{
+      renderApp();
+    })
+  }else{
+    renderApp();
+    
+  }
 })
+
+
 
 serviceWorker.unregister();

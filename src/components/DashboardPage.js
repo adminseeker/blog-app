@@ -6,7 +6,6 @@ import Header from "./Header";
 
 const DashboardPage = ()=>(
     <div>
-        <Header />
         <PostListFilters />
         <PostList />
     </div>
