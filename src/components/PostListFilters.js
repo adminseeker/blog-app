@@ -29,8 +29,10 @@ const PostListFilters = (props)=>{
     )
 };
 
-const mapStateToProps = (state)=>({
+const mapStateToProps = (state)=>{
+    return {
     filters:state.filters
-})
+    }
+}
 
 export default connect(mapStateToProps)(PostListFilters);

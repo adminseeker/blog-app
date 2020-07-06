@@ -8,9 +8,10 @@ const addPost = (post)=>({
 
 const startAddPost = (postData = {})=>{
     return (dispatch,getState)=>{
+        const uid = getState().auth.uid;
         const {title="",body="",createdAt=0}=postData;
         const post = {title,body,createdAt}
-        return database.ref("posts").push(post).then((ref)=>{
+        return database.ref("users/"+uid+"/posts").push(post).then((ref)=>{
             dispatch(addPost({
                 id:ref.key,
                 ...post
@@ -27,7 +28,8 @@ const editPost = (id,updates)=>({
 
 const startEditPost = (id,updates)=>{
     return (dispatch,getState)=>{
-        return database.ref("posts/"+id).update(updates).then((ref)=>{
+        const uid = getState().auth.uid;
+        return database.ref("users/"+uid+"/posts/"+id).update(updates).then((ref)=>{
             dispatch(editPost(id,updates))
         })
     }
@@ -40,7 +42,8 @@ const removePost = (id)=>({
 
 const startRemovePost = (id)=>{
     return (dispatch,getState)=>{
-        return database.ref("posts/"+id).remove().then((ref)=>{
+        const uid = getState().auth.uid;
+        return database.ref("users/"+uid+"posts/"+id).remove().then((ref)=>{
             dispatch(removePost(id));
         })
     }
@@ -53,7 +56,8 @@ const setPosts = (posts)=>({
 
 const startSetPosts = ()=>{
     return (dispatch,getState)=>{
-        return database.ref("posts").once("value").then((snapshot)=>{
+        const uid = getState().auth.uid;
+        return database.ref("users/"+uid+"/posts").once("value").then((snapshot)=>{
             const posts = [];
             snapshot.forEach((post)=>{
                 posts.push({
