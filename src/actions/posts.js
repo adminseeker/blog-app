@@ -43,7 +43,7 @@ const removePost = (id)=>({
 const startRemovePost = (id)=>{
     return (dispatch,getState)=>{
         const uid = getState().auth.uid;
-        return database.ref("users/"+uid+"posts/"+id).remove().then((ref)=>{
+        return database.ref("users/"+uid+"/posts/"+id).remove().then((ref)=>{
             dispatch(removePost(id));
         })
     }

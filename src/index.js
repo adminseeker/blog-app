@@ -5,9 +5,7 @@ import configureStore from "./store/configureStore";
 import {Provider} from "react-redux";
 import {firebase} from "./firebase/firebase";
 import {startSetPosts} from "./actions/posts";
-import startGetPost from "./actions/publicPost";
 import LoadingPage from "./components/LoadingPage";
-import ReadPostPage from "./components/ReadPostPage";
 import {login,logout} from "./actions/auth";
 import * as serviceWorker from "./serviceWorker";
 
