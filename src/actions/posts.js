@@ -70,4 +70,24 @@ const startSetPosts = ()=>{
     }
 }
 
-export {startAddPost,startEditPost,startRemovePost,startSetPosts};
+const startGetPost =(id)=>{
+    return database.ref("users").once("value").then((userSnapshot)=>{
+      const posts=[];
+      userSnapshot.forEach((postSnapshot)=>{
+          if(postSnapshot.val().posts[id]){
+           posts.push({
+            id,   
+            title:postSnapshot.val().posts[id].title,
+            body:  postSnapshot.val().posts[id].body
+             
+           })
+        }
+        
+      })
+      return posts;
+  })
+  
+}
+
+
+export {startAddPost,startEditPost,startRemovePost,startSetPosts,startGetPost};
