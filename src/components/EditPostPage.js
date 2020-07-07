@@ -12,7 +12,7 @@ const EditPostPage = (props)=>{
             <PostForm post={props.post} onSubmit={(updates)=>{props.dispatch(startEditPost(props.post.id,updates)); props.history.push("/")}}/>
             <button onClick={(e)=>{props.dispatch(startRemovePost(props.post.id)); props.history.push("/")}}>Remove</button>
         </div>
-    )
+    ) 
 }
 
 const mapStateToProps = (state,props)=>{
