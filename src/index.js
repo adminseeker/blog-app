@@ -7,6 +7,8 @@ import {firebase} from "./firebase/firebase";
 import {startSetPosts} from "./actions/posts";
 import LoadingPage from "./components/LoadingPage";
 import {login,logout} from "./actions/auth";
+import "normalize.css/normalize.css";
+import "./styles/styles.scss";
 import * as serviceWorker from "./serviceWorker";
 
 const store = configureStore();
@@ -33,6 +35,7 @@ const renderApp = ()=>{
 
 firebase.auth().onAuthStateChanged((user)=>{
   if(user){
+    console.log(user)
     store.dispatch(login(user.uid));
     store.dispatch(startSetPosts()).then(()=>{
       renderApp();
