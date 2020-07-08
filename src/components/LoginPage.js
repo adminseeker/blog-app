@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {startGoogleLogin,startGithubLogin} from "../actions/auth";
-import { GithubLoginButton,GoogleLoginButton } from "react-social-login-buttons";
+import {startGoogleLogin,startGithubLogin,startFacebookLogin} from "../actions/auth";
+import { GithubLoginButton,GoogleLoginButton, FacebookLoginButton } from "react-social-login-buttons";
 
 const LoginPage =(props)=>(
     <div className="box-layout">
@@ -14,6 +14,11 @@ const LoginPage =(props)=>(
             }}
         >
         </GoogleLoginButton>
+        <FacebookLoginButton 
+            onClick={()=>{
+                props.dispatch(startFacebookLogin())
+            }}
+        ></FacebookLoginButton>
         <GithubLoginButton 
         className="github-button"
         onClick={()=>{
